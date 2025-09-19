@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prateek Kumar - Portfolio</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Material Web Components -->
+    <script type="module" src="https://esm.run/@material/web/all.js"></script>
+    <style>
+        /* Preloader styles */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease;
+            background-color: var(--md-sys-color-background);
+        }
+
+        #preloader.fade-out {
+            opacity: 0;
+        }
+
+        /* Material 3 Color System Tokens */
+        :root {
+            /* Default Light Theme Colors */
+            --md-sys-color-primary: #006A6A;
+            --md-sys-color-on-primary: #FFFFFF;
+            --md-sys-color-primary-container: #9CF2F2;
+            --md-sys-color-on-primary-container: #002020;
+            --md-sys-color-secondary: #4A6363;
+            --md-sys-color-on-secondary: #FFFFFF;
+            --md-sys-color-secondary-container: #CCE8E7;
+            --md-sys-color-on-secondary-container: #051F1F;
+            --md-sys-color-tertiary: #4A607C;
+            --md-sys-color-on-tertiary: #FFFFFF;
+            --md-sys-color-tertiary-container: #D2E4FF;
+            --md-sys-color-on-tertiary-container: #031D36;
+            --md-sys-color-error: #BA1A1A;
+            --md-sys-color-on-error: #FFFFFF;
+            --md-sys-color-error-container: #FFDAD6;
+            --md-sys-color-on-error-container: #410002;
+            --md-sys-color-background: #FAFDFC;
+            --md-sys-color-on-background: #191C1C;
+            --md-sys-color-surface: #FAFDFC;
+            --md-sys-color-on-surface: #191C1C;
+            --md-sys-color-surface-variant: #DAE5E4;
+            --md-sys-color-on-surface-variant: #3F4948;
+            --md-sys-color-outline: #6F7979;
+            --md-sys-color-shadow: #000000;
+            --md-sys-color-inverse-surface: #2E3131;
+            --md-sys-color-inverse-on-surface: #EFF1F1;
+            --md-sys-color-inverse-primary: #80D5D5;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--md-sys-color-background);
+            color: var(--md-sys-color-on-background);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        body.overflow-hidden {
+            overflow: hidden;
+        }
+
+        /* Hide content until loaded */
+        .content-hidden {
+            display: none;
+        }
+        
+        .project-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <md-circular-progress indeterminate></md-circular-progress>
+        <p id="loading-text" class="mt-4">Loading Assets...</p>
+    </div>
+
+    <div id="page-content" class="content-hidden">
+        <!-- Header -->
+        <header class="p-4 flex justify-between items-center sticky top-0 z-10 backdrop-blur-md" style="background-color: rgba(250, 253, 252, 0.8);">
+            <h1 class="text-xl font-bold" style="color: var(--md-sys-color-primary);">Prateek Kumar</h1>
+            <div class="flex items-center space-x-4">
+                <label for="color-picker" class="cursor-pointer">
+                    <span class="material-icons" style="color: var(--md-sys-color-primary);">palette</span>
+                </label>
+                <input type="color" id="color-picker" value="#006A6A" class="w-0 h-0 opacity-0">
+                <md-icon-button id="theme-toggle">
+                    <span class="material-icons">dark_mode</span>
+                </md-icon-button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="flex-grow p-8">
+            <div class="max-w-4xl mx-auto">
+                <!-- Hero Section -->
+                <section id="home" class="text-center py-20">
+                    <img src="https://placehold.co/150x150/9CF2F2/002020?text=PK" alt="Prateek Kumar" class="mx-auto rounded-full mb-6 shadow-lg">
+                    <h2 class="text-5xl font-bold mb-2" style="color: var(--md-sys-color-primary);">Prateek Kumar</h2>
+                    <p class="text-xl" style="color: var(--md-sys-color-secondary);">Software Engineer | Full-Stack Developer</p>
+                     <div class="mt-10 flex justify-center items-center space-x-4">
+                        <md-filled-button href="#contact">Get in Touch</md-filled-button>
+                        <md-icon-button href="https://www.linkedin.com/in/2169-prateek/" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4s1.39.63 1.39 1.4v4.93h2.8Z"/></svg>
+                        </md-icon-button>
+                    </div>
+                </section>
+
+                <!-- About Section -->
+                <section id="about" class="py-20">
+                    <h3 class="text-4xl font-bold mb-8 text-center" style="color: var(--md-sys-color-primary);">About Me</h3>
+                    <p class="text-center text-lg max-w-3xl mx-auto" style="color: var(--md-sys-color-on-surface);">
+                        A dedicated and versatile software engineering student with a strong foundation in C++, Java, and Python. Experienced in developing full-stack applications, from real-time communication platforms to IoT systems. Passionate about solving complex problems, learning new technologies, and collaborating in agile environments to build efficient and scalable software solutions.
+                    </p>
+                </section>
+
+                 <!-- Skills Section -->
+                <section id="skills" class="py-20" style="background-color: var(--md-sys-color-secondary-container); border-radius: 24px;">
+                    <h3 class="text-4xl font-bold mb-12 text-center" style="color: var(--md-sys-color-on-secondary-container);">Skills</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center max-w-4xl mx-auto">
+                        <div style="color: var(--md-sys-color-on-secondary-container);">
+                            <span class="material-icons text-4xl mb-4" style="color: var(--md-sys-color-primary);">code</span>
+                            <h4 class="text-2xl font-semibold mb-2">Languages</h4>
+                            <p>C++, Java, Python, HTML, JavaScript</p>
+                        </div>
+                        <div style="color: var(--md-sys-color-on-secondary-container);">
+                            <span class="material-icons text-4xl mb-4" style="color: var(--md-sys-color-primary);">storage</span>
+                            <h4 class="text-2xl font-semibold mb-2">Databases</h4>
+                            <p>MySQL</p>
+                        </div>
+                        <div style="color: var(--md-sys-color-on-secondary-container);">
+                            <span class="material-icons text-4xl mb-4" style="color: var(--md-sys-color-primary);">memory</span>
+                            <h4 class="text-2xl font-semibold mb-2">Core Concepts</h4>
+                            <p>Data Structures & Algorithms, OOPS, DBMS, SDLC</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Projects Section -->
+                <section id="projects" class="py-20">
+                     <h3 class="text-4xl font-bold mb-12 text-center" style="color: var(--md-sys-color-primary);">My Projects</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- Project Card 1 -->
+                        <a href="?project=video-app" class="project-card rounded-2xl p-6 block" style="background-color: var(--md-sys-color-surface-variant);">
+                            <h4 class="text-2xl font-bold mb-2" style="color: var(--md-sys-color-on-surface-variant);">Real-time Video Calling App</h4>
+                            <p class="mb-4" style="color: var(--md-sys-color-on-surface-variant);">Built a secure, low-latency video calling platform with screen sharing and multi-user conferencing using WebRTC.</p>
+                            <md-text-button>View Details</md-text-button>
+                        </a>
+                        <!-- Project Card 2 -->
+                         <a href="?project=iot-lighting" class="project-card rounded-2xl p-6 block" style="background-color: var(--md-sys-color-surface-variant);">
+                             <h4 class="text-2xl font-bold mb-2" style="color: var(--md-sys-color-on-surface-variant);">Home Automation Lighting System</h4>
+                            <p class="mb-4" style="color: var(--md-sys-color-on-surface-variant);">Designed a smart lighting system with voice/app control and sensor-based adaptive lighting to optimize energy usage.</p>
+                            <md-text-button>View Details</md-text-button>
+                        </a>
+                        <!-- Project Card 3 -->
+                         <a href="?project=hostel-management" class="project-card rounded-2xl p-6 block" style="background-color: var(--md-sys-color-surface-variant);">
+                             <h4 class="text-2xl font-bold mb-2" style="color: var(--md-sys-color-on-surface-variant);">Student Hostel Management System</h4>
+                            <p class="mb-4" style="color: var(--md-sys-color-on-surface-variant);">Developed a desktop app for hostel record management with an admin dashboard, payment tracking, and MySQL integration.</p>
+                             <md-text-button>View Details</md-text-button>
+                        </a>
+                        <!-- Project Card 4 -->
+                         <a href="?project=calculator" class="project-card rounded-2xl p-6 block" style="background-color: var(--md-sys-color-surface-variant);">
+                            <h4 class="text-2xl font-bold mb-2" style="color: var(--md-sys-color-on-surface-variant);">Scientific Calculator</h4>
+                            <p class="mb-4" style="color: var(--md-sys-color-on-surface-variant);">Developed a scientific calculator in Java with advanced mathematical functions and an intuitive GUI.</p>
+                            <md-text-button>View Details</md-text-button>
+                        </a>
+                    </div>
+                </section>
+                
+                <!-- Hackathons Section -->
+                <section id="hackathons" class="py-20">
+                    <h3 class="text-4xl font-bold mb-12 text-center" style="color: var(--md-sys-color-primary);">Hackathons</h3>
+                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="rounded-2xl p-6" style="background-color: var(--md-sys-color-tertiary-container);">
+                            <h4 class="text-2xl font-bold mb-2" style="color: var(--md-sys-color-on-tertiary-container);">Zinnovation Hackathon</h4>
+                             <p class="mb-4" style="color: var(--md-sys-color-on-tertiary-container);">Built a system to detect deepfake images on the internet using AI-based image forensics.</p>
+                        </div>
+                         <div class="rounded-2xl p-6" style="background-color: var(--md-sys-color-tertiary-container);">
+                            <h4 class="text-2xl font-bold mb-2" style="color: var(--md-sys-color-on-tertiary-container);">Code Crafters Hackathon</h4>
+                            <p class="mb-4" style="color: var(--md-sys-color-on-tertiary-container);">Developed a voice and text-enabled affordable healthcare system for mental health and rural diagnostics.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Certifications Section -->
+                <section id="certifications" class="py-20">
+                    <h3 class="text-4xl font-bold mb-12 text-center" style="color: var(--md-sys-color-primary);">Certifications</h3>
+                    <div class="space-y-2 max-w-3xl mx-auto">
+                        <md-list-item>
+                            <div slot="headline">Meta React Native Developer</div>
+                            <div slot="supporting-text">Mastered cross-platform mobile app development.</div>
+                             <span class="material-icons" slot="end">verified</span>
+                        </md-list-item>
+                        <md-list-item>
+                            <div slot="headline">HackerRank Certified Software Engineer</div>
+                             <div slot="supporting-text">Demonstrated strong coding and problem-solving skills.</div>
+                             <span class="material-icons" slot="end">verified</span>
+                        </md-list-item>
+                        <md-list-item>
+                            <div slot="headline">Meta Database Essentials</div>
+                             <div slot="supporting-text">Gained practical knowledge of SQL and relational databases.</div>
+                             <span class="material-icons" slot="end">verified</span>
+                        </md-list-item>
+                         <md-list-item>
+                            <div slot="headline">Industrial IoT Markets & Security</div>
+                             <div slot="supporting-text">From University of Colorado Boulder.</div>
+                             <span class="material-icons" slot="end">verified</span>
+                        </md-list-item>
+                    </div>
+                </section>
+
+
+                <!-- Contact Section -->
+                <section id="contact" class="py-20">
+                     <h3 class="text-4xl font-bold mb-12 text-center" style="color: var(--md-sys-color-primary);">Contact Me</h3>
+                    <div class="max-w-lg mx-auto p-8 rounded-2xl" style="background-color: var(--md-sys-color-surface-variant);">
+                        <form class="flex flex-col space-y-6">
+                            <md-outlined-text-field label="Name" type="text" required></md-outlined-text-field>
+                            <md-outlined-text-field label="Email" type="email" value="prateek14pr@gmail.com" required></md-outlined-text-field>
+                            <md-outlined-text-field label="Message" type="textarea" rows="5" required></md-outlined-text-field>
+                            <md-filled-button type="submit" class="self-end">Send Message</md-filled-button>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="p-6 text-center" style="background-color: var(--md-sys-color-surface-variant);">
+            <p style="color: var(--md-sys-color-on-surface-variant);">&copy; 2024 Prateek Kumar. All rights reserved.</p>
+        </footer>
+    </div>
+    
+    <!-- Project Details Modal -->
+    <div id="project-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 backdrop-blur-sm" >
+        <div id="modal-content" class="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto p-8 rounded-2xl" style="background-color: var(--md-sys-color-surface);">
+             <md-icon-button id="close-modal" class="absolute top-4 right-4 z-10">
+                <span class="material-icons">close</span>
+            </md-icon-button>
+            <div id="project-details-content">
+                <!-- Project content will be injected here -->
+            </div>
+        </div>
+    </div>
+
+
+    <script type="module">
+        import {
+            argbFromHex,
+            themeFromSourceColor,
+            applyTheme
+        } from "https://esm.run/@material/material-color-utilities";
+        
+        const projectData = {
+            'video-app': {
+                title: 'Real-time Video Calling App',
+                image: 'https://placehold.co/1200x600/9CF2F2/002020?text=Video+App',
+                description: 'A secure, low-latency video calling platform with screen sharing, multi-user conferencing, and cross-platform support.',
+                tools: ['WebRTC', 'JavaScript', 'HTML5', 'CSS3', 'Node.js', 'Socket.io'],
+                steps: [
+                    {
+                        title: '1. Project Setup & Signaling Server',
+                        text: 'Initialized the project structure and set up a Node.js server with Socket.io to handle signaling. This server manages exchanging session control messages and network information between users, which is crucial for establishing a WebRTC connection.',
+                        image: 'https://placehold.co/400x300/CCE8E7/051F1F?text=Server+Setup'
+                    },
+                    {
+                        title: '2. Frontend Development & UI',
+                        text: 'Developed the user interface using HTML and CSS, focusing on a clean and intuitive layout. JavaScript was used to capture user media (camera and microphone) using the `navigator.mediaDevices.getUserMedia` API.',
+                        image: 'https://placehold.co/400x300/CCE8E7/051F1F?text=UI+Design'
+                    },
+                    {
+                        title: '3. WebRTC Peer Connection',
+                        text: 'Implemented the core WebRTC logic to create `RTCPeerConnection` objects for each user. This involved handling ICE candidates for NAT traversal and exchanging SDP (Session Description Protocol) offers and answers to establish a direct peer-to-peer connection.',
+                        image: 'https://placehold.co/400x300/CCE8E7/051F1F?text=WebRTC+Connection'
+                    },
+                    {
+                        title: '4. Feature Implementation',
+                        text: 'Added key features like screen sharing using the `getDisplayMedia` API, and multi-user conferencing by managing multiple peer connections. Mute/unmute functionality and video toggling were also implemented for better user control.',
+                        image: 'https://placehold.co/400x300/CCE8E7/051F1F?text=Features'
+                    }
+                ]
+            },
+            'iot-lighting': {
+                title: 'Home Automation Lighting System',
+                image: 'https://placehold.co/1200x600/9CF2F2/002020?text=IoT+Lighting',
+                description: 'A smart lighting system with voice/app control, smart scheduling, and sensor-based adaptive lighting to optimize energy usage and comfort.',
+                tools: ['IoT (ESP32)', 'Sensors (LDR, PIR)', 'Mobile App (Flutter)', 'Firebase'],
+                steps: [
+                    {
+                        title: '1. Hardware Setup',
+                        text: 'The core of the system is an ESP32 microcontroller connected to a relay module to control the lights. Light Dependent Resistor (LDR) and Passive Infrared (PIR) sensors were integrated to detect ambient light and motion respectively.',
+                        image: 'https://placehold.co/400x300/D2E4FF/031D36?text=Hardware'
+                    },
+                    {
+                        title: '2. Firmware Development',
+                        text: 'Wrote Arduino C++ code for the ESP32 to read sensor data, connect to Wi-Fi, and communicate with a Firebase Realtime Database. The firmware handles the logic for automatic lighting based on sensor input and commands from the mobile app.',
+                        image: 'https://placehold.co/400x300/D2E4FF/031D36?text=Firmware'
+                    },
+                    {
+                        title: '3. Backend & Database',
+                        text: 'Utilized Firebase for real-time data synchronization between the ESP32 and the mobile app. This allowed for instant control and status updates of the lighting system from anywhere with an internet connection.',
+                        image: 'https://placehold.co/400x300/D2E4FF/031D36?text=Firebase'
+                    },
+                     {
+                        title: '4. Mobile App',
+                        text: 'Developed a cross-platform mobile app using Flutter to provide a user-friendly interface for controlling the lights, setting schedules, and viewing sensor data. The app also included voice command integration for hands-free operation.',
+                        image: 'https://placehold.co/400x300/D2E4FF/031D36?text=Mobile+App'
+                    }
+                ]
+            },
+            'hostel-management': {
+                title: 'Student Hostel Management System',
+                image: 'https://placehold.co/1200x600/9CF2F2/002020?text=Hostel+System',
+                description: 'A desktop application for hostel record management featuring an admin dashboard, payment tracking, and robust database integration.',
+                tools: ['Java', 'MySQL', 'JavaFX/AWT', 'JDBC'],
+                steps: [
+                    {
+                        title: '1. Database Design',
+                        text: 'Designed a relational database schema in MySQL to store student information, room allocation, fee payments, and staff details. This ensured data integrity and efficient querying.',
+                        image: 'https://placehold.co/400x300/FFDAD6/410002?text=Database'
+                    },
+                    {
+                        title: '2. Backend Logic',
+                        text: 'Developed the backend logic in Java, using JDBC for database connectivity. Implemented classes and methods for CRUD (Create, Read, Update, Delete) operations on all the database tables.',
+                        image: 'https://placehold.co/400x300/FFDAD6/410002?text=Backend'
+                    },
+                     {
+                        title: '3. User Interface',
+                        text: 'Created an intuitive graphical user interface using JavaFX. The UI included forms for data entry, tables for displaying records, and a dashboard for the admin to get an overview of the hostel status.',
+                        image: 'https://placehold.co/400x300/FFDAD6/410002?text=UI'
+                    },
+                     {
+                        title: '4. Feature Integration',
+                        text: 'Integrated features like payment tracking with automated reminders, room allocation management, and a search functionality to easily find student records. User authentication was also implemented to secure the system.',
+                        image: 'https://placehold.co/400x300/FFDAD6/410002?text=Features'
+                    }
+                ]
+            },
+            'calculator': {
+                title: 'Scientific Calculator',
+                image: 'https://placehold.co/1200x600/9CF2F2/002020?text=Calculator',
+                description: 'A scientific calculator in Java with advanced mathematical functions, including trigonometry, logarithms, and complex number calculations.',
+                tools: ['Java', 'Swing/AWT', 'JUnit'],
+                 steps: [
+                    {
+                        title: '1. Core Engine',
+                        text: 'Developed the core calculation engine in Java to handle standard arithmetic operations as well as advanced scientific functions like trigonometric, logarithmic, and exponential calculations. Robust error handling was implemented for cases like division by zero.',
+                        image: 'https://placehold.co/400x300/9CF2F2/002020?text=Engine'
+                    },
+                    {
+                        title: '2. GUI with Swing',
+                        text: 'Designed and implemented a user-friendly graphical user interface using Java Swing. The layout was carefully planned to be intuitive, with buttons for all the functions and a clear display for input and results.',
+                        image: 'https://placehold.co/400x300/9CF2F2/002020?text=GUI'
+                    },
+                    {
+                        title: '3. Event Handling',
+                        text: 'Implemented event listeners for all the buttons to capture user input and trigger the corresponding calculations in the core engine. The display was updated in real-time as the user interacted with the calculator.',
+                        image: 'https://placehold.co/400x300/9CF2F2/002020?text=Events'
+                    },
+                     {
+                        title: '4. Testing',
+                        text: 'Wrote unit tests using JUnit to ensure the accuracy of the calculation engine. These tests covered a wide range of scenarios, including edge cases, to guarantee the reliability of the calculator.',
+                        image: 'https://placehold.co/400x300/9CF2F2/002020?text=Testing'
+                    }
+                ]
+            }
+        };
+
+        const colorPicker = document.getElementById('color-picker');
+        const themeToggle = document.getElementById('theme-toggle');
+        const preloader = document.getElementById('preloader');
+        const pageContent = document.getElementById('page-content');
+        const projectModal = document.getElementById('project-modal');
+        const closeModalButton = document.getElementById('close-modal');
+        const projectDetailsContent = document.getElementById('project-details-content');
+
+        function applyDynamicTheme(color, isDark) {
+            const theme = themeFromSourceColor(argbFromHex(color));
+            applyTheme(theme, {
+                target: document.body,
+                dark: isDark
+            });
+        }
+
+        colorPicker.addEventListener('input', (e) => {
+            const isDark = document.body.classList.contains('dark-theme');
+            applyDynamicTheme(e.target.value, isDark);
+        });
+
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-theme');
+            const isDark = document.body.classList.contains('dark-theme');
+            const themeIcon = themeToggle.querySelector('.material-icons');
+            themeIcon.textContent = isDark ? 'light_mode' : 'dark_mode';
+            
+            applyDynamicTheme(colorPicker.value, isDark);
+        });
+        
+        function showProjectDetails(projectId) {
+            const project = projectData[projectId];
+            if (project) {
+                let stepsHtml = '';
+                project.steps.forEach((step, index) => {
+                    stepsHtml += `
+                        <div class="fade-in mb-12 flex flex-col md:flex-row items-center gap-8 ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}">
+                            <div class="md:w-1/2">
+                                <h3 class="text-2xl font-bold mb-4" style="color: var(--md-sys-color-primary);">${step.title}</h3>
+                                <p>${step.text}</p>
+                            </div>
+                            <div class="md:w-1/2">
+                                <img src="${step.image}" alt="${step.title}" class="rounded-lg shadow-lg">
+                            </div>
+                        </div>
+                    `;
+                });
+
+                let toolsHtml = '';
+                project.tools.forEach(tool => {
+                     toolsHtml += `<span class="inline-block rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2" style="background-color: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container);">${tool}</span>`;
+                });
+
+                projectDetailsContent.innerHTML = `
+                    <section class="fade-in text-center py-12">
+                         <h2 class="text-5xl font-bold mb-4" style="color: var(--md-sys-color-primary);">${project.title}</h2>
+                         <p class="text-lg max-w-3xl mx-auto" style="color: var(--md-sys-color-secondary);">${project.description}</p>
+                    </section>
+                    <img src="${project.image}" alt="${project.title}" class="fade-in rounded-2xl shadow-xl mb-16 mx-auto">
+                    
+                    <section class="fade-in mb-16">
+                        <h3 class="text-3xl font-bold mb-6 text-center" style="color: var(--md-sys-color-primary);">Tools & Technologies</h3>
+                        <div class="text-center">
+                            ${toolsHtml}
+                        </div>
+                    </section>
+
+                    <section>
+                         <h3 class="text-3xl font-bold mb-12 text-center" style="color: var(--md-sys-color-primary);">Development Process</h3>
+                        ${stepsHtml}
+                    </section>
+                `;
+                
+                projectModal.classList.remove('hidden');
+                projectModal.classList.add('flex');
+                document.body.classList.add('overflow-hidden');
+            }
+        }
+        
+        function hideProjectDetails() {
+            projectModal.classList.add('hidden');
+            projectModal.classList.remove('flex');
+            document.body.classList.remove('overflow-hidden');
+            projectDetailsContent.innerHTML = ''; // Clear content
+        }
+
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('click', (e) => {
+                e.preventDefault();
+                const href = card.getAttribute('href');
+                if (!href || !href.includes('?')) return;
+                
+                try {
+                    const queryString = href.substring(href.indexOf('?') + 1);
+                    const params = new URLSearchParams(queryString);
+                    const projectId = params.get('project');
+                    if (projectId) {
+                        showProjectDetails(projectId);
+                    }
+                } catch (error) {
+                    console.error("Error parsing project link:", error);
+                }
+            });
+        });
+
+        closeModalButton.addEventListener('click', hideProjectDetails);
+        projectModal.addEventListener('click', (e) => {
+            if (e.target === projectModal) {
+                hideProjectDetails();
+            }
+        });
+
+        window.addEventListener('load', () => {
+            applyDynamicTheme(colorPicker.value, false);
+            
+            preloader.classList.add('fade-out');
+            
+            setTimeout(() => {
+                preloader.style.display = 'none';
+                pageContent.classList.remove('content-hidden');
+                pageContent.style.display = 'block';
+            }, 500);
+        });
+    </script>
+</body>
+</html>
+
