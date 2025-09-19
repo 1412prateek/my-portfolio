@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -97,6 +97,26 @@
         .fade-in {
             animation: fadeIn 0.5s ease-out forwards;
         }
+        .profile-pic-container {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 1.5rem;
+        }
+        .profile-pic-container #edit-profile-pic {
+            display: none;
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            background-color: var(--md-sys-color-primary);
+            color: var(--md-sys-color-on-primary);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+        .profile-pic-container:hover #edit-profile-pic {
+            display: inline-flex;
+        }
     </style>
 </head>
 <body class="flex flex-col min-h-screen">
@@ -111,7 +131,7 @@
         <!-- Header -->
         <header class="p-4 flex justify-between items-center sticky top-0 z-10 backdrop-blur-md" style="background-color: rgba(250, 253, 252, 0.8);">
             <h1 class="text-xl font-bold" style="color: var(--md-sys-color-primary);">Prateek Kumar</h1>
-            <div class="flex items-center space-x-4">
+            <div class="flex items-center space-x-2 sm:space-x-4">
                 <label for="color-picker" class="cursor-pointer">
                     <span class="material-icons" style="color: var(--md-sys-color-primary);">palette</span>
                 </label>
@@ -123,13 +143,19 @@
         </header>
 
         <!-- Main Content -->
-        <main class="flex-grow p-8">
+        <main class="flex-grow p-4 md:p-8">
             <div class="max-w-4xl mx-auto">
                 <!-- Hero Section -->
-                <section id="home" class="text-center py-20">
-                    <img src="https://placehold.co/150x150/9CF2F2/002020?text=PK" alt="Prateek Kumar" class="mx-auto rounded-full mb-6 shadow-lg">
-                    <h2 class="text-5xl font-bold mb-2" style="color: var(--md-sys-color-primary);">Prateek Kumar</h2>
-                    <p class="text-xl" style="color: var(--md-sys-color-secondary);">Software Engineer | Full-Stack Developer</p>
+                <section id="home" class="text-center py-16 sm:py-20">
+                    <div class="profile-pic-container">
+                        <img id="profile-pic" src="https://placehold.co/150x150/9CF2F2/002020?text=PK" alt="Prateek Kumar" class="mx-auto rounded-full shadow-lg w-[150px] h-[150px] object-cover">
+                        <md-icon-button id="edit-profile-pic">
+                            <span class="material-icons">edit</span>
+                        </md-icon-button>
+                    </div>
+                    <input type="file" id="profile-pic-input" class="hidden" accept="image/*">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-2" style="color: var(--md-sys-color-primary);">Prateek Kumar</h2>
+                    <p class="text-lg md:text-xl" style="color: var(--md-sys-color-secondary);">Software Engineer | Full-Stack Developer</p>
                      <div class="mt-10 flex justify-center items-center space-x-4">
                         <md-filled-button href="#contact">Get in Touch</md-filled-button>
                         <md-icon-button href="https://www.linkedin.com/in/2169-prateek/" target="_blank">
@@ -139,60 +165,60 @@
                 </section>
 
                 <!-- About Section -->
-                <section id="about" class="py-20">
-                    <h3 class="text-4xl font-bold mb-8 text-center" style="color: var(--md-sys-color-primary);">About Me</h3>
-                    <p class="text-center text-lg max-w-3xl mx-auto" style="color: var(--md-sys-color-on-surface);">
+                <section id="about" class="py-16 sm:py-20">
+                    <h3 class="text-3xl md:text-4xl font-bold mb-8 text-center" style="color: var(--md-sys-color-primary);">About Me</h3>
+                    <p class="text-left md:text-center text-base md:text-lg max-w-3xl mx-auto" style="color: var(--md-sys-color-on-surface);">
                         A dedicated and versatile software engineering student with a strong foundation in C++, Java, and Python. Experienced in developing full-stack applications, from real-time communication platforms to IoT systems. Passionate about solving complex problems, learning new technologies, and collaborating in agile environments to build efficient and scalable software solutions.
                     </p>
                 </section>
 
                  <!-- Skills Section -->
-                <section id="skills" class="py-20" style="background-color: var(--md-sys-color-secondary-container); border-radius: 24px;">
-                    <h3 class="text-4xl font-bold mb-12 text-center" style="color: var(--md-sys-color-on-secondary-container);">Skills</h3>
+                <section id="skills" class="py-16 sm:py-20 px-4 sm:px-8" style="background-color: var(--md-sys-color-secondary-container); border-radius: 24px;">
+                    <h3 class="text-3xl md:text-4xl font-bold mb-12 text-center" style="color: var(--md-sys-color-on-secondary-container);">Skills</h3>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center max-w-4xl mx-auto">
                         <div style="color: var(--md-sys-color-on-secondary-container);">
                             <span class="material-icons text-4xl mb-4" style="color: var(--md-sys-color-primary);">code</span>
-                            <h4 class="text-2xl font-semibold mb-2">Languages</h4>
+                            <h4 class="text-xl md:text-2xl font-semibold mb-2">Languages</h4>
                             <p>C++, Java, Python, HTML, JavaScript</p>
                         </div>
                         <div style="color: var(--md-sys-color-on-secondary-container);">
                             <span class="material-icons text-4xl mb-4" style="color: var(--md-sys-color-primary);">storage</span>
-                            <h4 class="text-2xl font-semibold mb-2">Databases</h4>
+                            <h4 class="text-xl md:text-2xl font-semibold mb-2">Databases</h4>
                             <p>MySQL</p>
                         </div>
                         <div style="color: var(--md-sys-color-on-secondary-container);">
                             <span class="material-icons text-4xl mb-4" style="color: var(--md-sys-color-primary);">memory</span>
-                            <h4 class="text-2xl font-semibold mb-2">Core Concepts</h4>
+                            <h4 class="text-xl md:text-2xl font-semibold mb-2">Core Concepts</h4>
                             <p>Data Structures & Algorithms, OOPS, DBMS, SDLC</p>
                         </div>
                     </div>
                 </section>
 
                 <!-- Projects Section -->
-                <section id="projects" class="py-20">
-                     <h3 class="text-4xl font-bold mb-12 text-center" style="color: var(--md-sys-color-primary);">My Projects</h3>
+                <section id="projects" class="py-16 sm:py-20">
+                     <h3 class="text-3xl md:text-4xl font-bold mb-12 text-center" style="color: var(--md-sys-color-primary);">My Projects</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <!-- Project Card 1 -->
                         <a href="?project=video-app" class="project-card rounded-2xl p-6 block" style="background-color: var(--md-sys-color-surface-variant);">
-                            <h4 class="text-2xl font-bold mb-2" style="color: var(--md-sys-color-on-surface-variant);">Real-time Video Calling App</h4>
+                            <h4 class="text-xl md:text-2xl font-bold mb-2" style="color: var(--md-sys-color-on-surface-variant);">Real-time Video Calling App</h4>
                             <p class="mb-4" style="color: var(--md-sys-color-on-surface-variant);">Built a secure, low-latency video calling platform with screen sharing and multi-user conferencing using WebRTC.</p>
                             <md-text-button>View Details</md-text-button>
                         </a>
                         <!-- Project Card 2 -->
                          <a href="?project=iot-lighting" class="project-card rounded-2xl p-6 block" style="background-color: var(--md-sys-color-surface-variant);">
-                             <h4 class="text-2xl font-bold mb-2" style="color: var(--md-sys-color-on-surface-variant);">Home Automation Lighting System</h4>
+                             <h4 class="text-xl md:text-2xl font-bold mb-2" style="color: var(--md-sys-color-on-surface-variant);">Home Automation Lighting System</h4>
                             <p class="mb-4" style="color: var(--md-sys-color-on-surface-variant);">Designed a smart lighting system with voice/app control and sensor-based adaptive lighting to optimize energy usage.</p>
                             <md-text-button>View Details</md-text-button>
                         </a>
                         <!-- Project Card 3 -->
                          <a href="?project=hostel-management" class="project-card rounded-2xl p-6 block" style="background-color: var(--md-sys-color-surface-variant);">
-                             <h4 class="text-2xl font-bold mb-2" style="color: var(--md-sys-color-on-surface-variant);">Student Hostel Management System</h4>
+                             <h4 class="text-xl md:text-2xl font-bold mb-2" style="color: var(--md-sys-color-on-surface-variant);">Student Hostel Management System</h4>
                             <p class="mb-4" style="color: var(--md-sys-color-on-surface-variant);">Developed a desktop app for hostel record management with an admin dashboard, payment tracking, and MySQL integration.</p>
                              <md-text-button>View Details</md-text-button>
                         </a>
                         <!-- Project Card 4 -->
                          <a href="?project=calculator" class="project-card rounded-2xl p-6 block" style="background-color: var(--md-sys-color-surface-variant);">
-                            <h4 class="text-2xl font-bold mb-2" style="color: var(--md-sys-color-on-surface-variant);">Scientific Calculator</h4>
+                            <h4 class="text-xl md:text-2xl font-bold mb-2" style="color: var(--md-sys-color-on-surface-variant);">Scientific Calculator</h4>
                             <p class="mb-4" style="color: var(--md-sys-color-on-surface-variant);">Developed a scientific calculator in Java with advanced mathematical functions and an intuitive GUI.</p>
                             <md-text-button>View Details</md-text-button>
                         </a>
@@ -200,52 +226,65 @@
                 </section>
                 
                 <!-- Hackathons Section -->
-                <section id="hackathons" class="py-20">
-                    <h3 class="text-4xl font-bold mb-12 text-center" style="color: var(--md-sys-color-primary);">Hackathons</h3>
+                <section id="hackathons" class="py-16 sm:py-20">
+                    <h3 class="text-3xl md:text-4xl font-bold mb-12 text-center" style="color: var(--md-sys-color-primary);">Hackathons</h3>
                      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div class="rounded-2xl p-6" style="background-color: var(--md-sys-color-tertiary-container);">
-                            <h4 class="text-2xl font-bold mb-2" style="color: var(--md-sys-color-on-tertiary-container);">Zinnovation Hackathon</h4>
+                            <h4 class="text-xl md:text-2xl font-bold mb-2" style="color: var(--md-sys-color-on-tertiary-container);">Zinnovation Hackathon</h4>
                              <p class="mb-4" style="color: var(--md-sys-color-on-tertiary-container);">Built a system to detect deepfake images on the internet using AI-based image forensics.</p>
                         </div>
                          <div class="rounded-2xl p-6" style="background-color: var(--md-sys-color-tertiary-container);">
-                            <h4 class="text-2xl font-bold mb-2" style="color: var(--md-sys-color-on-tertiary-container);">Code Crafters Hackathon</h4>
+                            <h4 class="text-xl md:text-2xl font-bold mb-2" style="color: var(--md-sys-color-on-tertiary-container);">Code Crafters Hackathon</h4>
                             <p class="mb-4" style="color: var(--md-sys-color-on-tertiary-container);">Developed a voice and text-enabled affordable healthcare system for mental health and rural diagnostics.</p>
                         </div>
                     </div>
                 </section>
 
                 <!-- Certifications Section -->
-                <section id="certifications" class="py-20">
-                    <h3 class="text-4xl font-bold mb-12 text-center" style="color: var(--md-sys-color-primary);">Certifications</h3>
+                <section id="certifications" class="py-16 sm:py-20">
+                    <h3 class="text-3xl md:text-4xl font-bold mb-12 text-center" style="color: var(--md-sys-color-primary);">Certifications</h3>
+                    
                     <div class="space-y-2 max-w-3xl mx-auto">
                         <md-list-item>
+                            <span class="material-icons" slot="start">verified</span>
                             <div slot="headline">Meta React Native Developer</div>
                             <div slot="supporting-text">Mastered cross-platform mobile app development.</div>
-                             <span class="material-icons" slot="end">verified</span>
+                            <a href="https://coursera.org/share/db88b31479128440000edd9ff8d036be" target="_blank" slot="end">
+                                <md-text-button>View Certificate</md-text-button>
+                            </a>
                         </md-list-item>
                         <md-list-item>
+                            <span class="material-icons" slot="start">verified</span>
                             <div slot="headline">HackerRank Certified Software Engineer</div>
                              <div slot="supporting-text">Demonstrated strong coding and problem-solving skills.</div>
-                             <span class="material-icons" slot="end">verified</span>
+                            <a href="https://www.hackerrank.com/certificates/bd5eddf38e05" target="_blank" slot="end">
+                                <md-text-button>View Certificate</md-text-button>
+                            </a>
                         </md-list-item>
                         <md-list-item>
+                            <span class="material-icons" slot="start">verified</span>
                             <div slot="headline">Meta Database Essentials</div>
                              <div slot="supporting-text">Gained practical knowledge of SQL and relational databases.</div>
-                             <span class="material-icons" slot="end">verified</span>
+                            <a href="#" target="_blank" slot="end">
+                                <md-text-button>View Certificate</md-text-button>
+                            </a>
                         </md-list-item>
                          <md-list-item>
-                            <div slot="headline">Industrial IoT Markets & Security</div>
-                             <div slot="supporting-text">From University of Colorado Boulder.</div>
-                             <span class="material-icons" slot="end">verified</span>
+                             <span class="material-icons" slot="start">verified</span>
+                            <div slot="headline">Frontend for Java Full Stack Development</div>
+                             <div slot="supporting-text">Completed comprehensive frontend training.</div>
+                            <a href="https://coursera.org/share/0517a7ff081f5d66766393f7034fa088" target="_blank" slot="end">
+                                <md-text-button>View Certificate</md-text-button>
+                            </a>
                         </md-list-item>
                     </div>
                 </section>
 
 
                 <!-- Contact Section -->
-                <section id="contact" class="py-20">
-                     <h3 class="text-4xl font-bold mb-12 text-center" style="color: var(--md-sys-color-primary);">Contact Me</h3>
-                    <div class="max-w-lg mx-auto p-8 rounded-2xl" style="background-color: var(--md-sys-color-surface-variant);">
+                <section id="contact" class="py-16 sm:py-20">
+                     <h3 class="text-3xl md:text-4xl font-bold mb-12 text-center" style="color: var(--md-sys-color-primary);">Contact Me</h3>
+                    <div class="max-w-lg mx-auto p-6 md:p-8 rounded-2xl" style="background-color: var(--md-sys-color-surface-variant);">
                         <form class="flex flex-col space-y-6">
                             <md-outlined-text-field label="Name" type="text" required></md-outlined-text-field>
                             <md-outlined-text-field label="Email" type="email" value="prateek14pr@gmail.com" required></md-outlined-text-field>
@@ -265,8 +304,8 @@
     
     <!-- Project Details Modal -->
     <div id="project-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 backdrop-blur-sm" >
-        <div id="modal-content" class="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto p-8 rounded-2xl" style="background-color: var(--md-sys-color-surface);">
-             <md-icon-button id="close-modal" class="absolute top-4 right-4 z-10">
+        <div id="modal-content" class="relative w-[90%] max-w-4xl max-h-[90vh] overflow-y-auto p-4 sm:p-8 rounded-2xl" style="background-color: var(--md-sys-color-surface);">
+             <md-icon-button id="close-modal" class="absolute top-2 right-2 sm:top-4 sm:right-4 z-10">
                 <span class="material-icons">close</span>
             </md-icon-button>
             <div id="project-details-content">
@@ -275,6 +314,27 @@
         </div>
     </div>
 
+    <!-- This script is for showing the page and has no external dependencies -->
+    <script>
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            const pageContent = document.getElementById('page-content');
+            
+            if (preloader) {
+                preloader.classList.add('fade-out');
+            }
+            
+            setTimeout(() => {
+                if (preloader) {
+                    preloader.style.display = 'none';
+                }
+                if (pageContent) {
+                    pageContent.classList.remove('content-hidden');
+                    pageContent.style.display = 'block';
+                }
+            }, 500);
+        });
+    </script>
 
     <script type="module">
         import {
@@ -400,19 +460,27 @@
 
         const colorPicker = document.getElementById('color-picker');
         const themeToggle = document.getElementById('theme-toggle');
-        const preloader = document.getElementById('preloader');
-        const pageContent = document.getElementById('page-content');
         const projectModal = document.getElementById('project-modal');
         const closeModalButton = document.getElementById('close-modal');
         const projectDetailsContent = document.getElementById('project-details-content');
+        const profilePic = document.getElementById('profile-pic');
+        const editProfilePicButton = document.getElementById('edit-profile-pic');
+        const profilePicInput = document.getElementById('profile-pic-input');
 
         function applyDynamicTheme(color, isDark) {
-            const theme = themeFromSourceColor(argbFromHex(color));
-            applyTheme(theme, {
-                target: document.body,
-                dark: isDark
-            });
+            try {
+                const theme = themeFromSourceColor(argbFromHex(color));
+                applyTheme(theme, {
+                    target: document.body,
+                    dark: isDark
+                });
+            } catch (error) {
+                console.error("Could not apply theme:", error);
+            }
         }
+        
+        // Apply initial theme once the module is loaded
+        applyDynamicTheme(colorPicker.value, false);
 
         colorPicker.addEventListener('input', (e) => {
             const isDark = document.body.classList.contains('dark-theme');
@@ -436,7 +504,7 @@
                     stepsHtml += `
                         <div class="fade-in mb-12 flex flex-col md:flex-row items-center gap-8 ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}">
                             <div class="md:w-1/2">
-                                <h3 class="text-2xl font-bold mb-4" style="color: var(--md-sys-color-primary);">${step.title}</h3>
+                                <h3 class="text-xl md:text-2xl font-bold mb-4" style="color: var(--md-sys-color-primary);">${step.title}</h3>
                                 <p>${step.text}</p>
                             </div>
                             <div class="md:w-1/2">
@@ -452,21 +520,21 @@
                 });
 
                 projectDetailsContent.innerHTML = `
-                    <section class="fade-in text-center py-12">
-                         <h2 class="text-5xl font-bold mb-4" style="color: var(--md-sys-color-primary);">${project.title}</h2>
-                         <p class="text-lg max-w-3xl mx-auto" style="color: var(--md-sys-color-secondary);">${project.description}</p>
+                    <section class="fade-in text-center py-6 sm:py-12">
+                         <h2 class="text-3xl md:text-5xl font-bold mb-4" style="color: var(--md-sys-color-primary);">${project.title}</h2>
+                         <p class="text-base md:text-lg max-w-3xl mx-auto" style="color: var(--md-sys-color-secondary);">${project.description}</p>
                     </section>
-                    <img src="${project.image}" alt="${project.title}" class="fade-in rounded-2xl shadow-xl mb-16 mx-auto">
+                    <img src="${project.image}" alt="${project.title}" class="fade-in rounded-2xl shadow-xl mb-12 md:mb-16 mx-auto">
                     
-                    <section class="fade-in mb-16">
-                        <h3 class="text-3xl font-bold mb-6 text-center" style="color: var(--md-sys-color-primary);">Tools & Technologies</h3>
+                    <section class="fade-in mb-12 md:mb-16">
+                        <h3 class="text-2xl md:text-3xl font-bold mb-6 text-center" style="color: var(--md-sys-color-primary);">Tools & Technologies</h3>
                         <div class="text-center">
                             ${toolsHtml}
                         </div>
                     </section>
 
                     <section>
-                         <h3 class="text-3xl font-bold mb-12 text-center" style="color: var(--md-sys-color-primary);">Development Process</h3>
+                         <h3 class="text-2xl md:text-3xl font-bold mb-12 text-center" style="color: var(--md-sys-color-primary);">Development Process</h3>
                         ${stepsHtml}
                     </section>
                 `;
@@ -483,6 +551,23 @@
             document.body.classList.remove('overflow-hidden');
             projectDetailsContent.innerHTML = ''; // Clear content
         }
+        
+        editProfilePicButton.addEventListener('click', () => {
+            profilePicInput.click();
+        });
+
+        profilePicInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const imageUrl = e.target.result;
+                    profilePic.src = imageUrl;
+                    localStorage.setItem('profileImage', imageUrl);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
 
         document.querySelectorAll('.project-card').forEach(card => {
             card.addEventListener('click', (e) => {
@@ -510,17 +595,11 @@
             }
         });
 
-        window.addEventListener('load', () => {
-            applyDynamicTheme(colorPicker.value, false);
-            
-            preloader.classList.add('fade-out');
-            
-            setTimeout(() => {
-                preloader.style.display = 'none';
-                pageContent.classList.remove('content-hidden');
-                pageContent.style.display = 'block';
-            }, 500);
-        });
+        // Load saved profile image on initial load
+        const savedImage = localStorage.getItem('profileImage');
+        if (savedImage) {
+            profilePic.src = savedImage;
+        }
     </script>
 </body>
 </html>
